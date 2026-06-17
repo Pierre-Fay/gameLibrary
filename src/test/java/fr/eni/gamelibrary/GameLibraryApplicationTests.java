@@ -2,7 +2,9 @@ package fr.eni.gamelibrary;
 
 import fr.eni.gamelibrary.bo.Address;
 import fr.eni.gamelibrary.bo.Customer;
+import fr.eni.gamelibrary.bo.Genre;
 import fr.eni.gamelibrary.dal.CustomerRepository;
+import fr.eni.gamelibrary.dal.GenreRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,6 +16,9 @@ class GameLibraryApplicationTests {
 
     @Autowired
     private CustomerRepository customerRepository;
+
+    @Autowired
+    private GenreRepository genreRepository;
 
     @Test
     void testCustomerFirstNameIsMarcel() {
@@ -30,6 +35,19 @@ class GameLibraryApplicationTests {
 
         // 3. Assert: Fetch it back and verify the first name is "Marcel"
         assertThat(savedCustomer).isNotNull();
+    }
+
+    @Test
+    void testGenreExists() {
+
+        genreRepository.deleteAll();
+
+        Genre genre1 = new Genre("Horror");
+
+        Genre savedGenre = genreRepository.save(genre1);
+
+        assertThat(savedGenre).isNotNull();
+
     }
 
 }
