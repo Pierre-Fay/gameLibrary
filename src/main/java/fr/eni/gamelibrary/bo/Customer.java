@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 
 @Entity
@@ -26,7 +25,7 @@ public class Customer {
     @Column(unique = true, nullable = false)
     private String email;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String phone;
 
     public Customer(String firstName, String lastName, String email, String phone) {
@@ -34,5 +33,10 @@ public class Customer {
         this.lastName = lastName;
         this.email = email;
         this.phone = phone;
+    }
+
+    @Override
+    public String toString() {
+        return firstName + " " + lastName;
     }
 }
