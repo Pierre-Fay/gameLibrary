@@ -25,14 +25,18 @@ public class Customer {
     @Column(unique = true, nullable = false)
     private String email;
 
-    @Column(nullable = true)
     private String phone;
 
-    public Customer(String firstName, String lastName, String email, String phone) {
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true)
+    @JoinColumn(name="address_id")
+    private Address address;
+
+    public Customer(String firstName, String lastName, String email, String phone,  Address address) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phone = phone;
+        this.address = address;
     }
 
     @Override
