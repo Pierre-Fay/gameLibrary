@@ -21,7 +21,7 @@ class GameLibraryApplicationTests {
     private GenreRepository genreRepository;
 
     @Test
-    void testCustomerFirstNameIsMarcel() {
+    void testCustomerIsNotNull() {
 
         // 0. Delete all to have a clean database for the test
         customerRepository.deleteAll();
@@ -49,5 +49,4 @@ class GameLibraryApplicationTests {
         assertThat(savedGenre).isNotNull();
 
     }
-
 }

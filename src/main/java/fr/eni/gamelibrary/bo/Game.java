@@ -4,6 +4,10 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -15,10 +19,12 @@ public class Game {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false)
+    @Column(nullable = false,  length = 50)
+    @NonNull
     private String name;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true, length = 13)
+    @NonNull
     private String reference;
 
     private Integer minimumAge;
@@ -28,6 +34,15 @@ public class Game {
     private Integer averageDuration;
 
     @Column(nullable = false)
-    private Integer dailyRate;
+    @NonNull
+    private Float dailyRate;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "GAMES_GENRES", joinColumns = @JoinColumn(name = "game_id"), inverseJoinColumns = @JoinColumn(name = "genre_id"))
+    private List<Genre> genres = new ArrayList<>();
+
+    public void addGenre(Genre genre){
+        genres.add(genre);
+    }
 
 }

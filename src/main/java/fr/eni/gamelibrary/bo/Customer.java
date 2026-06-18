@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 
 @Entity
@@ -16,15 +17,19 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 50)
+    @NonNull
     private String firstName;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 50)
+    @NonNull
     private String lastName;
 
-    @Column(unique = true, nullable = false)
+    @Column(unique = true, nullable = false, length = 50)
+    @NonNull
     private String email;
 
+    @Column(nullable = true , length = 15)
     private String phone;
 
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true, fetch = FetchType.EAGER)

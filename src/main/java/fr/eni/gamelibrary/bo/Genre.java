@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 @Entity
 @AllArgsConstructor
@@ -16,6 +17,7 @@ public class Genre {
     private Integer id;
 
     @Column(nullable = false, length = 50, unique = true)
+    @NonNull
     private String name;
 
     public Genre(String name) {

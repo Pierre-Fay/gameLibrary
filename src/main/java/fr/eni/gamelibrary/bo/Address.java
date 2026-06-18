@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 @Entity
 @AllArgsConstructor
@@ -15,13 +16,16 @@ public class Address {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 100)
+    @NonNull
     private String street;
 
-    @Column(nullable = false)
+    @Column(nullable = false,  length = 5)
+    @NonNull
     private String zip;
 
-    @Column(nullable = false)
+    @Column(nullable = false,  length = 100)
+    @NonNull
     private String city;
 
     public Address(String street, String zip, String city) {
