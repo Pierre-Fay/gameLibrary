@@ -25,7 +25,7 @@ public class Address {
     private String zip;
 
     @Column(nullable = false,  length = 100)
-    @NonNull
+//    @NonNull
     private String city;
 
     public Address(String street, String zip, String city) {
